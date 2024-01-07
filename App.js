@@ -1,20 +1,72 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { Button, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-export default function App() {
+
+import HomeScreen from './src/screens/HomeScreen';
+import AboutScreen from './src/screens/AboutScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+
+//const Tab = createBottomTabNavigator();
+//const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator 
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+            if (route.name === "Home") {
+              iconName = "home";
+              size = focused ? 25 : 20;
+              color = focused ? '#222' : '#999'
+            }
+            else if(route.name === "About"){
+              iconName = "person";
+              size = focused ? 25 : 20;
+              color = focused ? '#222' : '#999'
+            }
+            else if(route.name === "Settings"){
+              iconName = "settings";
+              size = focused ? 25 : 20;
+              color = focused ? '#222' : '#999'
+            }
+            return(
+              <Ionicons 
+                name={iconName}
+                size={size}
+                color={color}
+              />
+            )
+          }
+        })}
+        tabBarOptions={{ 
+          activeTintColor: '#000',
+          inactiveTintColor: '#f00',
+          activeBackgroundColor: '#999',
+          inactiveBackgroundColor: '#fff',
+          showLabel: true,
+          labelStyle: {fontSize: 14},
+          showIcon: true
+          
+        }}
+        activeColor='#00f'
+        inactiveColor='#fff'
+        barStyle={{backgroundColor:'#ff9999'}}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="About" component={AboutScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
