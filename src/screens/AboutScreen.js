@@ -3,7 +3,7 @@ import React from 'react'
 
 function AboutScreen({navigation}) {
     const onPressHandler = () => {
-        // navigation.navigate('Home Screen');
+        // navigation.navigate('Home');
         navigation.goBack();
       }
     

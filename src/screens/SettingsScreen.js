@@ -5,7 +5,7 @@ function SettingsScreen({navigation}) {
     
   const onPressHandler = () => {
     
-    navigation.navigate('About Screen');
+    navigation.navigate('About');
   }
       return (
         <View style={styles.body}>

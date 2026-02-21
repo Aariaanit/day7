@@ -4,7 +4,7 @@ import React from 'react'
 function HomeScreen({navigation}) {
     
   const onPressHandler = () => {
-    navigation.navigate('About Screen');
+    navigation.navigate('About');
   }
       return (
         <View style={styles.body}>

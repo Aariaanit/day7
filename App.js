@@ -7,13 +7,14 @@ import HomeScreen from "./src/screens/HomeScreen";
 import AboutScreen from "./src/screens/AboutScreen";
 import SettingsScreen from "./src/screens/SettingsScreen";
 
+
 const Tab = createBottomTabNavigator();
 
-export default function App() {
+function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
+       <Tab.Navigator
+       screenOptions={({ route }) => ({
           headerShown: false,
           tabBarShowLabel: false,
           tabBarStyle: {
@@ -39,7 +40,7 @@ export default function App() {
             );
           },
         })}
-      >
+       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="About" component={AboutScreen} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
@@ -47,3 +48,4 @@ export default function App() {
     </NavigationContainer>
   );
 }
+export default App;
